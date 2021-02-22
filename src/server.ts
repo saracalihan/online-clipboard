@@ -1,4 +1,5 @@
 import fastify, { FastifyInstance, RouteOptions } from 'fastify'
+import { Models } from './models'
 import 'colors';
 
 export default class Server {
@@ -27,9 +28,13 @@ export default class Server {
     });
   }
 
-  addRouter(routers: Array<RouteOptions>){
+  addRoutes(routers: Array<RouteOptions>){
     routers.forEach((r) => {
       this.app.route(r)
     })
+  }
+
+  addModels(sequelize){
+    sequelize.addModels(Models)
   }
 }

@@ -1,5 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import User from './model'
+import User from '../models/user'
 
 export default class UserService{
   
@@ -16,12 +16,15 @@ export default class UserService{
     if(!user){
       return res.status(400).send({error: 'User not found!'})
     }
-
+    console.log(user.tokens);
+    
     return res.send(user);
   }
   
   static async createUser(req: FastifyRequest , res: FastifyReply) {
     const email = req.body['email'];
+    const password = req.body['password'];
+
     let user = await User.findOne({ 
       where: {
         email
@@ -33,6 +36,7 @@ export default class UserService{
     }
 
     user = new User({ email });
+    await user.setPassword(password);
     await user.save();
     return res.send({user: user});
   }

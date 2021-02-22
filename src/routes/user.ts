@@ -1,5 +1,5 @@
 import { RouteOptions } from "fastify";
-import UserService from './service'
+import UserService from '../services/user'
 
 const getUser: RouteOptions = {
   method: 'GET',

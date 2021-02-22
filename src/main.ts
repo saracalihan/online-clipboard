@@ -1,13 +1,14 @@
 import Server from './server'
 import { Sequelize } from 'sequelize-typescript'
-import { Routes, Models } from './modules'
-import User from './modules/user/model' 
+import { Routes } from './routes'
+import { Models } from './models'
 import {
   database,
   username,
   password,
   port,
 } from './configs/serverConfig';
+
 require('dotenv').config()
 
 const sequelize = new Sequelize({
@@ -16,16 +17,13 @@ const sequelize = new Sequelize({
   username,
   password,
   storage: ':memory:',
-  //models: [User] //[__dirname + '/models'] // or [User, Order],
+  models: Models
 })
-
-sequelize.addModels(Models)
-
-
-// modules/index.ts modelleri ve routerları klasör isimlerine göre otomatik olarak alacak ve buradaki models ile addRouter içine ekleyecek kod yazılmalı 
+console.log(Models, Routes);
 
 const server: Server = new Server();
 
-server.addRouter(Routes)
+server.addRoutes(Routes)
+server.addModels(sequelize)
 
 server.listen(port);
