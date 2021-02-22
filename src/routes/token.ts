@@ -4,7 +4,7 @@ import { TokenService } from '../services'
 const getToken: RouteOptions = {
   method: 'GET',
   url: '/tokens/:id',
-  handler: function (req, res) {
+  handler: async function (req, res) {
     TokenService.getTokenByValue(req, res);
   }
 }
@@ -12,7 +12,7 @@ const getToken: RouteOptions = {
 const createToken: RouteOptions = {
   method: 'POST',
   url: '/tokens',
-  handler: function (req, res) {
+  handler: async function (req, res) {
     TokenService.createToken(req, res);
   }
 }
