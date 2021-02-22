@@ -26,16 +26,16 @@ export default class Token extends Model {
   @BelongsTo(() => User)
   user: User
 
-  generateToken(user: User): void {
+  generateToken(model: User): void {
     const expireDays = 10;
-    const key = `token-${user.id}_${user.email}.${new Date()}`;
+    const key = `token-${model.id}_${model.created_at}.${new Date()}`;
     const encryption: Encryption = new Encryption(key);
-    const now: Date = new Date();
-    now.setDate(now.getDate() + expireDays);
+    const ex2: Date = new Date();
+    ex2.setDate(ex2.getDate() + expireDays);
 
-    this.user_id = user.id;
+    this.user_id = model.id;
     this.value = encryption.hashed;
-    this.expired_at = now;
+    this.expired_at = ex2;
   }
 
   isExpired(): boolean{

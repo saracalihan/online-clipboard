@@ -18,13 +18,13 @@ export default class User extends Model {
   public password_hash: string;
 
   @CreatedAt @Column
-  public createdAt: Date
+  public created_at: Date
 
   @UpdatedAt @Column
-  public updatedAt: Date
+  public updated_at: Date
 
   @DeletedAt @Column
-  public deletedAt: Date
+  public deleted_at: Date
 
   @HasMany(() => Token)
   tokens: Token[]

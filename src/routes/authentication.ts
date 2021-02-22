@@ -14,7 +14,7 @@ const login: RouteOptions = {
 
     if(user && user.checkPassword(password)){
       const token = await user.generateToken()
-      return res.send({ 
+      return res.send({
         user,
         token
       })
