@@ -1,5 +1,6 @@
 import { Table, Column, Model, HasMany, Unique, AutoIncrement, CreatedAt, DeletedAt, PrimaryKey, UpdatedAt, Default } from 'sequelize-typescript'
 import Encryption from '../encryption';
+import Clipboard from './clipboard';
 import Token from './token';
 
 @Table
@@ -28,6 +29,9 @@ export default class User extends Model {
 
   @HasMany(() => Token)
   tokens: Token[]
+
+  @HasMany(() => Clipboard)
+  clipboards: Clipboard[]
 
   async generateToken(): Promise<Token>{
     const token = await new Token({ user_id: this.id });

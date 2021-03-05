@@ -3,7 +3,7 @@ import * as crypto from 'crypto';
 export default class Encryption {
   public hashed: string;
 
-  public saltLength = 20;
+  public saltLength = 10;
 
   public salt: string;
 
@@ -34,4 +34,10 @@ export default class Encryption {
 
     return this.hashed;
   }
+
+  encrypt = (data, cryptType = 'sha256', secret = this.secret) => (
+    crypto.createHmac(cryptType, secret)
+      .update(data)
+      .digest('hex')
+  );
 }

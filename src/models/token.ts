@@ -1,5 +1,19 @@
-import { Table, Column, Model, HasMany, Unique, AutoIncrement, CreatedAt, DeletedAt, PrimaryKey, UpdatedAt, ForeignKey, BelongsTo, Default } from 'sequelize-typescript'
+import {
+  Table,
+  Column,
+  Model,
+  Unique,
+  AutoIncrement,
+  CreatedAt,
+  PrimaryKey,
+  UpdatedAt,
+  ForeignKey,
+  BelongsTo,
+  Default,
+  HasOne
+} from 'sequelize-typescript'
 import Encryption from '../encryption'
+import Clipboard from './clipboard';
 import User from './user';
 
 @Table

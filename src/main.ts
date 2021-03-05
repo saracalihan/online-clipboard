@@ -7,7 +7,7 @@ import {
   username,
   password,
   port,
-} from './config/db-config';
+} from '../config/db-config';
 
 require('dotenv').config()
 

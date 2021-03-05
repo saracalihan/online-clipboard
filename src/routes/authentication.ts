@@ -1,6 +1,6 @@
 import { RouteOptions } from "fastify";
 import User from "../models/user";
-import { TokenService, UserService } from '../services'
+import { TokenService, UserService } from '../handlers'
 
 const login: RouteOptions = {
   method: 'POST',
@@ -44,7 +44,6 @@ const register: RouteOptions = {
     user = new User({ email });
     await user.setPassword(password);
     await user.save();
-
     return res.send({user: user});
   }
 }

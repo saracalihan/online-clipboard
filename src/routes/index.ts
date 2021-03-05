@@ -1,7 +1,8 @@
 import { FastifyReply, FastifyRequest, RouteOptions } from 'fastify';
-import UserRoutes from './user'
+import AuthenticationRoutes from './authentication'
+import ClipboardRoutes from './clipboard'
 import TokenRoutes from './token'
-import Authentication from './authentication'
+import UserRoutes from './user'
 
 export const Routes: Array<RouteOptions> = [
   {
@@ -13,5 +14,6 @@ export const Routes: Array<RouteOptions> = [
   },
   ...UserRoutes,
   ...TokenRoutes,
-  ...Authentication
+  ...AuthenticationRoutes,
+  ...ClipboardRoutes
 ]
