@@ -46,18 +46,17 @@ export default class Clipboard extends Model {
   user: User
 
   async generateToken(){
+    let length = 20;
     let result           = '';
     let characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for ( var i = 0; i < length; i++ ) {
        result += characters.charAt(Math.floor(Math.random() * 15));
     }
     this.token_value = result;
-    await this.save();
   }
 
   async setContent(header: string,text: string){
     this.header = header;
     this.text = text;
-    await this.save
   }
 }
