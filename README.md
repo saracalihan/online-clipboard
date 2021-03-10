@@ -4,36 +4,38 @@ TypeScript, Fastify, Sequelize-ts online clipboard application api
 ## File Structure
 ```
 .
-├── .env //enviroment variables
-├── .sequelizerc // sequelize settings
-├── package.json 
+├── config
+│   ├── db-config.js
+│   └── sequelize-config.js
+├── migrations
+│   ├── 22022021143225-create-user.js
+│   ├── 22022021143450-create-token.js
+│   └── 22022021172741-create-clipboard.js
+├── package.json
 ├── package-lock.json
 ├── README.md
-├── sample.env // sample enviroment variables
+├── sample.env
 ├── src
-│   ├── config
-│   │   ├── db-config.js
-│   │   └── sequelize-config.js
 │   ├── encryption
 │   │   └── index.ts
-│   ├── main.ts // app start point
-│   ├── migrations // migrations
-│   │   ├── 22022021143225-create-user.js
-│   │   └── 22022021143450-create-token.js
+│   ├── handlers
+│   │   ├── clipboard.ts
+│   │   ├── index.ts
+│   │   ├── token.ts
+│   │   └── user.ts
+│   ├── main.ts
 │   ├── models
+│   │   ├── clipboard.ts
 │   │   ├── index.ts
 │   │   ├── token.ts
 │   │   └── user.ts
 │   ├── routes
 │   │   ├── authentication.ts
+│   │   ├── clipboard.ts
 │   │   ├── index.ts
 │   │   ├── token.ts
 │   │   └── user.ts
-│   ├── server.ts // server class
-│   └── services
-│       ├── index.ts
-│       ├── token.ts
-│       └── user.ts
+│   └── server.ts
 └── tsconfig.json
 
 ```

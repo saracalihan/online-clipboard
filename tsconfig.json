@@ -13,8 +13,9 @@
     "incremental": true
   },
   "include": [
-    "src/**/*"
-, "config", "migrations"  ],
+    "src/**/*",
+    "config"
+  ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"

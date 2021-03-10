@@ -4,8 +4,9 @@
   "description": "",
   "main": "src/main.ts",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev ./src/main.ts",
+    "start": "tsc-watch --project . --outDir ./dist --onSuccess 'node ./dist/src/main.js'",
     "sequelize": "sequelize",
     "migrate": "sequelize-cli db:migrate"
   },
@@ -19,7 +20,8 @@
     "mysql2": "^2.2.5",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.5.0",
-    "sequelize-typescript": "^2.1.0"
+    "sequelize-typescript": "^2.1.0",
+    "tsc-watch": "^4.2.9"
   },
   "devDependencies": {
     "@types/node": "^13.13.43",
