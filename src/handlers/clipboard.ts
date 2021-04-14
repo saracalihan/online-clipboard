@@ -7,29 +7,34 @@ export default class ClipboardService {
   constructor(){}
 
   static async getClipboardByToken(req: FastifyRequest , res: FastifyReply){
-    const accessToken = req.headers['access-token'];
+    const accessToken = req.headers['access-token'] || null;
     const token_value = req.params['token'];
-    
-    const token = await Token.findOne({
-      where: {
-        value:  accessToken 
-      }
-    });
-    
-    if(!token)
-      return res.status(400).send('token not found');
     
     const clipboard = await Clipboard.findOne({
       where: {
-        user_id: token.user_id,
         token_value
       }
     })
-   
+
     if(!clipboard)
-      return res.status(400).send('Clipboard not found')
+      return res.status(400).send({
+        message: 'Clipboard not found!'
+      })
     
-    res.send(clipboard);
+    if(!clipboard.is_shared){
+      const token = await Token.findOne({
+        where: {
+          value:  accessToken
+        }
+      });
+      
+      if(!token)
+      return res.status(400).send({
+        message: 'Clipboard not found or you don\'t have permission!'
+      })
+    }
+    
+    res.status(200).send({ clipboard });
   }
 
   static async createClipboard(req: FastifyRequest , res: FastifyReply){
@@ -40,7 +45,9 @@ export default class ClipboardService {
     })
     
     if(!accessToken){
-      return res.status(400).send('Access token not found!')
+      return res.status(400).send({
+        message: 'Access token not found!'
+      })
     }
 
     const clipboard = new Clipboard();
@@ -49,7 +56,7 @@ export default class ClipboardService {
     clipboard.generateToken();
     await clipboard.save();
 
-    res.send(clipboard); 
+    res.status(201).send({ clipboard }); 
   }
   
 }

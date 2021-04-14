@@ -4,7 +4,7 @@ import { TokenService, UserService } from '../handlers'
 
 const login: RouteOptions = {
   method: 'POST',
-  url: '/login',
+  url: '/authentication/login',
   handler: async function (req, res) {
     const email: string = req.body['email'];
     const password: string = req.body['password'];
@@ -26,7 +26,7 @@ const login: RouteOptions = {
 
 const register: RouteOptions = {
   method: 'POST',
-  url: '/register',
+  url: '/authentication/register',
   handler: async function (req, res){
     const email = req.body['email'];
     const password = req.body['password'];

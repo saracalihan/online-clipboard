@@ -14,11 +14,13 @@ export default class UserService{
     })
 
     if(!user){
-      return res.status(400).send({error: 'User not found!'})
+      return res.status(400).send({
+        error: 'User not found!'
+      })
     }
     console.log(user.tokens);
     
-    return res.send(user);
+    return res.status(200).send({ user });
   }
   
   static async createUser(req: FastifyRequest , res: FastifyReply) {
@@ -32,12 +34,14 @@ export default class UserService{
     }); 
 
     if(user){
-      return res.status(400).send('User already exist!');
+      return res.status(400).send({
+        message: 'User already exist!'
+      });
     }
 
     user = new User({ email });
     await user.setPassword(password);
     await user.save();
-    return res.send({user: user});
+    return res.status(201).send({user: user});
   }
 }

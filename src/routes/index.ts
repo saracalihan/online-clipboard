@@ -7,7 +7,7 @@ import UserRoutes from './user'
 export const Routes: Array<RouteOptions> = [
   {
     method: 'GET',
-    url: '/health-check',
+    url: '/api/health-check',
     handler: function (res: FastifyRequest , req: FastifyReply): void {
       req.send('OK');
     }

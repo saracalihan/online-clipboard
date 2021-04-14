@@ -16,16 +16,16 @@ export default class TokenService {
     }); 
 
     if(!user){
-      return res.status(400).send('User not found!');
+      return res.status(400).send({
+        message: 'User not found!'
+      });
     }
 
     const token = await new Token({ user_id });
     token.generateToken(user);
     await token.save();
     
-    console.log(token.user);
-    
-    return res.send(token);
+    return res.status(201).send({ token });
   }
   
 }

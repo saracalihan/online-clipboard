@@ -12,9 +12,7 @@ const getToken: RouteOptions = {
 const createToken: RouteOptions = {
   method: 'POST',
   url: '/clipboards',
-  handler: async function (req, res) {
-    console.log('post');
-    
+  handler: async function (req, res) {  
     ClipboardService.createClipboard(req, res);
   }
 }

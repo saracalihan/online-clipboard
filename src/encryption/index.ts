@@ -9,11 +9,12 @@ export default class Encryption {
 
   private text?: string;
 
-  private secret: string = process.env.SECRET;
+  private secret: string = process.env.SECRET_KEY || 'UjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9';
 
   private cryptAlgorithm = 'sha512';
 
   constructor(text?: string, salt?: string, saltLength?: number) {
+    console.log(this.secret);
     this.saltLength = saltLength || this.saltLength;
     this.text = text;
     this.salt = salt || this.generateSalt(this.saltLength);

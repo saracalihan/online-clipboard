@@ -1,6 +1,7 @@
 import fastify, { FastifyInstance, RouteOptions } from 'fastify'
-import { Models } from './models'
 import 'colors';
+
+import { Models } from './models'
 
 export default class Server {
   public app: FastifyInstance;
@@ -15,7 +16,7 @@ export default class Server {
         console.error(err);
         process.exit(1);
       }
-      console.log(`Server listening on ${address}`.green);
+      console.log(`🚀 Server listening on `.yellow,`${address}`.green);
 
       if (callback) {
         callback();

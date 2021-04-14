@@ -1,5 +1,6 @@
-import Server from './server'
 import { Sequelize } from 'sequelize-typescript'
+
+import Server from './server'
 import { Routes } from './routes'
 import { Models } from './models'
 import {
@@ -19,7 +20,28 @@ const sequelize = new Sequelize({
   storage: ':memory:',
   models: Models
 })
-console.log(Models, Routes);
+
+const routes = Routes.map(r => {
+  let method = '';
+
+  switch (r.method){
+    case 'GET':
+      method = `${r.method}`.bgGreen;
+      break;
+    case 'POST':
+      method = `${r.method}`.bgBlue;
+      break;
+    case 'PUT':
+      method = `${r.method}`.bgYellow;
+      break;
+    case 'DELETE':
+      method = `${r.method}`.bgRed;
+      break;
+  }
+  return `\t${r.url}`.green + ' ' + method
+}).toString().split(',').join('\n');
+
+console.log('Models:\n\t', Models,'\nRoutes:\n',routes);
 
 const server: Server = new Server();
 
